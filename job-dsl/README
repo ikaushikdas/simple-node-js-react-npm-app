@@ -1,0 +1,3 @@
+ To change the NPM path
+ 
+ export PATH=$PATH:/var/jenkins_home/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/node/bin
