@@ -1,4 +1,4 @@
-job('NodeJS example') {
+job('Node Job-dSL EXample') {
     scm {
         git('https://github.com/ikaushikdas/simple-node-js-react-npm-app.git') {  node -> // is hudson.plugins.git.GitSCM
             node / gitConfigName('Kaushik Das')
@@ -14,5 +14,15 @@ job('NodeJS example') {
     }
     steps {
         shell("npm install")
+    }
+    steps {
+        dockerBuildAndPublish {
+            repositoryName('ikaushik96/nodeapp')
+            tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
+            registryCredentials('docker-hub')
+            forcePull(false)
+            createFingerprints(false)
+            skipDecorate()
+        }
     }
 }
