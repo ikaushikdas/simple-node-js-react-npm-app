@@ -5,6 +5,6 @@ if [ -f $my_file ]
 then
 echo "Node Modules already exists"
 else
-	npm start
+	npm install
 fi
 
