@@ -18,8 +18,9 @@ job('Node Job-dSL EXample') {
     
     
 }
+
 job('Node docker EXample') {
-steps {
+    steps {
         dockerBuildAndPublish {
             repositoryName('ikaushik96/nodeapp')
             tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
