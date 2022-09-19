@@ -14,6 +14,9 @@ job('Node Job-dSL EXample') {
     }
     steps {
         shell("npm install")
+        }
+    }
+    steps {
         dockerBuildAndPublish {
             repositoryName('ikaushik96/nodeapp')
             tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
