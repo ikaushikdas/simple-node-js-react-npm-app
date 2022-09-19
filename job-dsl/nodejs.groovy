@@ -15,7 +15,7 @@ job('Node Job-dSL EXample') {
     steps {
         shell("npm install")
         }
-    }
+    
     steps {
         dockerBuildAndPublish {
             repositoryName('ikaushik96/nodeapp')
