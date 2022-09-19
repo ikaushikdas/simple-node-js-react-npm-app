@@ -1,6 +1,6 @@
 #! /bin/bash
 
-my_file='node'
+my_file=node
 if [ -f $my_file ]
 then
 echo "Node Modules already exists"
