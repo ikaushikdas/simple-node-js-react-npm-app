@@ -16,7 +16,10 @@ job('Node Job-dSL EXample') {
         shell("npm install")
         }
     
-    steps {
+    
+}
+job('Node docker EXample') {
+steps {
         dockerBuildAndPublish {
             repositoryName('ikaushik96/nodeapp')
             tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
@@ -26,18 +29,4 @@ job('Node Job-dSL EXample') {
             skipDecorate()
         }
     }
-    
-    
 }
-// job('Node docker EXample') {
-// steps {
-//         dockerBuildAndPublish {
-//             repositoryName('ikaushik96/nodeapp')
-//             tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
-//             registryCredentials('docker-hub')
-//             forcePull(false)
-//             createFingerprints(false)
-//             skipDecorate()
-//         }
-//     }
-// }
