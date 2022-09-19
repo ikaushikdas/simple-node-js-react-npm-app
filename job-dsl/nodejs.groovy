@@ -18,7 +18,7 @@ job('Node Job-dSL EXample') {
     steps {     
         dockerBuildAndPublish {
             repositoryName('ikaushik96/nodeapp')
-            tag('${GIT_REVISION,length=9}')
+            tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
             registryCredentials('docker-hub')
             forcePull(false)
             createFingerprints(false)
