@@ -13,7 +13,7 @@ job('Node Job-dSL EXample') {
                          // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
     }
     steps {
-        //shell("npm install")
+        shell("npm install")
         dockerBuildAndPublish {
             repositoryName('ikaushik96/nodeapp')
             tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
