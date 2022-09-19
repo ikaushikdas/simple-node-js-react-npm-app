@@ -15,5 +15,16 @@ job('Node Job-dSL EXample') {
     steps {
         shell("npm install")
         }
+    steps {     
+        dockerBuildAndPublish {
+            repositoryName('ikaushik96/nodeapp')
+            tag('${GIT_REVISION,length=9}')
+            registryCredentials('docker-hub')
+            forcePull(false)
+            createFingerprints(false)
+            skipDecorate()
+        }
+    
+    }
      
 }
