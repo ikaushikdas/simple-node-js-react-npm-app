@@ -1,31 +1,19 @@
-pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
-     environment {
-            CI = 'true'
-        }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-                    steps {
-                        sh './jenkins/scripts/test.sh'
-                    }
-                }
-                stage('Deliver') {
-                            steps {
-                                sh './jenkins/scripts/deliver.sh'
-                                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                                sh './jenkins/scripts/kill.sh'
-                            }
-                        }
-
-    }
+node {
+   def commit_id
+   stage('Preparation') {
+     checkout scm
+     sh "git rev-parse --short HEAD > .git/commit-id"                        
+     commit_id = readFile('.git/commit-id').trim()
+   }
+   stage('test') {
+     nodejs(nodeJSInstallationName: 'nodejs') {
+       sh 'npm install'
+       sh 'npm test'
+     }
+   }
+   stage('docker build/push') {
+     docker.withRegistry('https://index.docker.io/v2/', 'docker-hub') {
+       def app = docker.build("ikaushik96/nodeapp:${commit_id}", '.').push()
+     }
+   }
 }
