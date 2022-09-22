@@ -25,6 +25,11 @@ node {
    }
   }
   catch(e){
+      // mark build as failed
+    currentBuild.result = "FAILURE";
+
+    // send slack notification
+    slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
     // mark build as failed
     currentBuild.result = "FAILURE";
     // set variables
