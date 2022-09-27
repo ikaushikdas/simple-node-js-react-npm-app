@@ -8,6 +8,8 @@ services:
     networks:
       - jenkins
     environment:
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.password=Test12345
       - sonar.jdbc.url=jdbc:postgresql://db:5432/sonar
     volumes:
       - sonarqube_conf:/opt/sonarqube/conf
