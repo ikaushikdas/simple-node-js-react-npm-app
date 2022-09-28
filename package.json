@@ -8,9 +8,22 @@
     "react-scripts": "1.0.14"
   },
   "scripts": {
+    "test:awesome": "mocha --reporter mochawesome || true ",
+    "open:report": "open mochawesome-report/mochawesome.html",
+    "sonar":"sonar-scanner",
+    "coverage": "./node_modules/.bin/nyc -r cobertura -r text-summary -r html npm test",
+    "coverage-lcov": "./node_modules/.bin/nyc -r cobertura -r text-summary -r lcov npm test",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "mocha",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "mocha": "8.2.0",
+    "sonar-scanner": "3.1.0",
+    "supertest": "3.0.0"
+
   }
 }
+
+
