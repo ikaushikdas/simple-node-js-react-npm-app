@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Sonarqube-test') {
             steps {
-                nodeJS(nodeJSInstalltionName: nodeJS){
+                nodeJS(nodeJSInstallationName: nodeJS){
                   sh 'npm install'
                   withSonarQubeEnv('sonar'){
                     sh 'npm install --save-dev mocha chai'
